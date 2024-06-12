@@ -1,0 +1,73 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Marlboro";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewData["Title"]</title>
+    <style>
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .section {
+            margin: 20px 0;
+        }
+
+            .section h2 {
+                font-size: 1.5em;
+                margin-bottom: 10px;
+            }
+
+            .section p {
+                font-size: 1em;
+                color: #555;
+            }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+            .button:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-center">
+            <h1 class="display-4">Welcome to Marlboro</h1>
+            <img src="~/images/marlboro.png" alt="Marlboro Image" class="hero-image">
+        </div>
+
+        <div class="section">
+            <h2>About Marlboro</h2>
+            <p>Marlboro is one of the world's best-known brands of cigarettes. Explore our website to learn more about our products and history.</p>
+        </div>
+
+        <div class="section">
+            <h2>Our Products</h2>
+            <p>Discover the wide range of Marlboro products available, including different flavors and strengths to suit every preference.</p>
+            <a href="/Marlboros" class="button">View Products</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+﻿@page
+@model TestAppWeb.Pages.MarlborosModel
+@{
+    ViewData["Title"] = "Marlboro";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Marlboro</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a.btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 10px 0;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+            a.btn:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <h1>Список сигарет</h1>
+    <a asp-page="EditСigarett" class="btn">Создать</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Color</th>
+                <th>Taste</th>
+                <th>Strong</th>
+                <th>Resin</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var marlboro in Model.marlboros)
+            {
+                <tr>
+                    <td><a href="EditUser?id=@marlboro.Id">@marlboro.Id</a></td>
+                    <td>@marlboro.Color</td>
+                    <td>@marlboro.Taste</td>
+                    <td>@marlboro.Strong</td>
+                    <td>@marlboro.Resin</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

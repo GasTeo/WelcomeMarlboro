@@ -1,0 +1,79 @@
+﻿@page
+@model TestAppWeb.Pages.EditCigarettModel
+@{
+    ViewData["Title"] = "Edit Cigarette";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Cigarette</title>
+    <style>
+        form {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        span {
+            color: red;
+            font-size: 12px;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+            button:hover {
+                background-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <form method="post">
+        <p>ID: @Model?.Cigarette?.Id</p>
+        <label for="Color">Цвет</label>
+        <input asp-for="Cigarette.Color" type="text" id="Color" name="Color">
+        <span asp-validation-for="Cigarette.Color"></span>
+
+        <label for="Taste">Вкус</label>
+        <input asp-for="Cigarette.Taste" type="text" id="Taste" name="Taste">
+        <span asp-validation-for="Cigarette.Taste"></span>
+
+        <label for="Strong">Кол-во крепкости</label>
+        <input asp-for="Cigarette.Strong" type="text" id="Strong" name="Strong">
+        <span asp-validation-for="Cigarette.Strong"></span>
+
+        <label for="Resin">Кол-во смолы</label>
+        <input asp-for="Cigarette.Resin" type="text" id="Resin" name="Resin">
+        <span asp-validation-for="Cigarette.Resin"></span>
+
+        <button type="submit">Сохранить</button>
+    </form>
+</body>
+</html>

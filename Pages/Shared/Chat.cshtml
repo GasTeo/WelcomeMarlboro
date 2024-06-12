@@ -1,0 +1,65 @@
+﻿@page
+@model TestAppWeb.Pages.Shared.ChatModel
+@{
+    ViewData["Title"] = "Chat";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div id="chat" class="card">
+                    <div id="messages" class="card-body">
+                        <!-- Сюда будут добавляться сообщения чата -->
+                    </div>
+                    <div class="card-footer">
+                        <input id="messageInput" type="text" class="form-control" placeholder="Type a message...">
+                        <button id="sendButton" class="btn btn-primary">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microsoft-signalr/5.0.9/signalr.min.js"></script>
+    <script>
+        const connection = new signalR.HubConnectionBuilder()
+            .withUrl("/chathub")
+            .build();
+
+        connection.start().then(function () {
+            console.log("Connected to hub.");
+        }).catch(function (err) {
+            return console.error(err.toString());
+        });
+
+        document.getElementById("sendButton").addEventListener("click", function (event) {
+            const message = document.getElementById("messageInput").value;
+            connection.invoke("SendMessage", "User", message).catch(function (err) {
+                return console.error(err.toString());
+            });
+            event.preventDefault();
+        });
+
+        connection.on("ReceiveMessage", function (user, message) {
+            const encodedMessage = user + " says: " + message;
+            const li = document.createElement("li");
+            li.textContent = encodedMessage;
+            document.getElementById("messages").appendChild(li);
+
+            if (user === "Bot") {
+                // Прокрутка вниз при получении сообщения от бота
+                document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight;
+            }
+        });
+    </script>
+</body>
+</html>
